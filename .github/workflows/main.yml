@@ -1,0 +1,19 @@
+name: Continuous Integration for Java Code Using Maven
+on: push
+jobs:
+  buildJob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the code on the runner VM
+        uses: actions/checkout@v7
+      - name: Install java & Maven
+        uses: actions/setup-java@v5
+        with:
+          java-version: 17
+          distribution: temurin
+      - name: Compile code
+        run: mvn compile
+      - name: test the code
+        run: mvn test
+      - name: Build Code
+        run: mvn package
